@@ -90,9 +90,9 @@
 
         <p>Por haber impartido tutoría académica y permanente de 18 alumnos del Programa de Noviciado en la Licenciatura en Trabajo Social:</p>
 
-        <div style="display: flex; width: 100%;">
+        <div style=" width: 100%;">
             {{-- Primera mitad de tutorados --}}
-            <table style="width: 50%; font-size:80%; margin-right: 10px; float: left;">
+            <table style="width: 100%; font-size:100%; ">
                 <thead>
                     <tr>
                         <th>Código</th>
@@ -100,7 +100,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($tutorados->take($half) as $tutorado)
+                    @foreach ($tutorados as $tutorado)
                     <tr >
                         <td>{{ $tutorado->codigo }}</td>
                         <td>{{ $tutorado->Nombre }}</td>
@@ -110,22 +110,7 @@
             </table>
 
             {{-- Segunda mitad de tutorados --}}
-            <table style="width: 50%; font-size:80%; float: left;">
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Nombre</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($tutorados->skip($half) as $tutorado)
-                    <tr>
-                        <td>{{ $tutorado->codigo }}</td>
-                        <td>{{ $tutorado->Nombre }}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+
         </div>
 
 
@@ -136,7 +121,9 @@
             <p>Atentamente</p>
             <p>"Piensa y Trabaja"</p>
             <p>Año del Legado de Frey Antonio Alcalde en Guadalajara</p>
-            <p>Guadalajara, Jal., a 3 de febrero de 2024</p>
+
+    <p>Guadalajara, Jal., a {{ $fechaActual }}</p>
+
 
 
         </div>

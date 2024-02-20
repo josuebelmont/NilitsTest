@@ -100,7 +100,7 @@ class alumnosContorller extends Controller
             //'telefono' => 'required',
             //'sexo' => 'required',
             'procedencia' => 'required',
-            'correo' => 'required',
+            //'correo' => 'required',
             //'fechaNac' => 'required',
             //'dictamen' => 'required',
             //'estatus' => 'required',
@@ -113,7 +113,7 @@ class alumnosContorller extends Controller
         //$alumno->codigo = $validatedData['codigo'];
         $alumno->Nombre = $validatedData['nombre'];
         //$alumno->telefono = $validatedData['telefono'];
-        $alumno->correo = $validatedData['correo'];
+        //$alumno->correo = $validatedData['correo'];
         //$alumno->sexo = $validatedData['sexo'];
         //$alumno->procedencia = $validatedData['procedencia'];
         //$alumno->fechaNac = $validatedData['fechaNac'];
@@ -237,8 +237,10 @@ class alumnosContorller extends Controller
         $query = $request->input('query');
 
         // Realizar la consulta para buscar alumnos por nombre
+
         $alumnos = alumnos_model::where('Nombre', 'like', '%' . $query . '%')->paginate(10);
         $tutores = maestrosModel::all();
+
 
         // Devolver la vista con los resultados de la búsqueda
         return view('alumnos.alumnos_sin_tutor', ['alumnos' => $alumnos, 'tutores' => $tutores]);
@@ -249,7 +251,13 @@ class alumnosContorller extends Controller
         $query = $request->input('query');
 
         // Realizar la consulta para buscar alumnos por nombre
-        $alumnos = alumnos_model::where('Nombre', 'like', '%' . $query . '%')->paginate(10);
+        $alumnos = DB::table('alumnos')
+    ->leftJoin('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
+    ->leftJoin('maestros', 'alumno_tutor.id_tutor', '=', 'maestros.codigo')
+    ->select('alumnos.*', 'maestros.Nombre as tutor')
+    ->where('alumnos.Nombre', 'like', '%' . $query . '%')
+    ->paginate(10);
+
 
         $totalRegistros = alumnos_model::count();
         $totalEgresados = alumnos_model::where('estatus', 3)->count();

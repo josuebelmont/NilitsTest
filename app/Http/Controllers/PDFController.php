@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Models\maestrosModel;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -54,8 +54,35 @@ public function constanciaTutoria(Request $request)
 
     $half = ceil($tutorados->count() / 2);
      // Tus datos aquí
+
+     Carbon::setLocale(LC_ALL,'es_MX.UTF-8'); // Establece el idioma de Carbon
+
+
+     // Traducción de los nombres de los meses al español
+     $meses = [
+         'January' => 'enero',
+         'February' => 'febrero',
+         'March' => 'marzo',
+         'April' => 'abril',
+         'May' => 'mayo',
+         'June' => 'junio',
+         'July' => 'julio',
+         'August' => 'agosto',
+         'September' => 'septiembre',
+         'October' => 'octubre',
+         'November' => 'noviembre',
+         'December' => 'diciembre',
+     ];
+
+     // Formatea la fecha manualmente con los nombres de los meses en español
+     $fechaActual = Carbon::now()->format('d \d\e F \d\e Y');
+
+     foreach ($meses as $mesIngles => $mesEspanol) {
+         $fechaActual = str_replace($mesIngles, $mesEspanol, $fechaActual);
+     }
+
     $pdf = PDF::loadView('pdf.constancia_tutoria',['maestro' => $maestro,
-    'tutorados' => $tutorados, 'half'=>$half]);
+    'tutorados' => $tutorados, 'half'=>$half, 'fechaActual'=>$fechaActual]);
     return $pdf->download('constancia_tutoria.pdf');
 }
 }

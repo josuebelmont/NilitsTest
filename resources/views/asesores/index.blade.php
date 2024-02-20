@@ -191,32 +191,32 @@
 
                             <div class="mb-3">
                                 <label for="nombre" class="form-label">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre">
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="apellido" class="form-label">Apellido:</label>
-                                <input type="text" class="form-control" id="apellido" name="apellido">
+                                <input type="text" class="form-control" id="apellido" name="apellido" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="correo" class="form-label">Correo:</label>
-                                <input type="email" class="form-control" id="correo" name="correo">
+                                <input type="email" class="form-control" id="correo" name="correo" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="telefono_fijo" class="form-label">Teléfono Fijo:</label>
-                                <input type="text" class="form-control" id="telefono_fijo" name="telefono_fijo">
+                                <input type="number" class="form-control" id="telefono_fijo" name="telefono_fijo" maxlength="15" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="telefono_celular" class="form-label">Teléfono Celular:</label>
-                                <input type="text" class="form-control" id="telefono_celular" name="telefono_celular">
+                                <input type="text" class="form-control" id="telefono_celular" name="telefono_celular" required>
                             </div>
 
                             <div class="mb-3">
                                 <label for="extension" class="form-label">Extensión:</label>
-                                <input type="text" class="form-control" id="extension" name="extension">
+                                <input type="text" class="form-control" id="extension" name="extension" required>
                             </div>
 
                             <div class="mb-3">
@@ -244,11 +244,12 @@
                                 <textarea class="form-control" id="observaciones" name="observaciones"></textarea>
                             </div>
 
+                            <button type="submit" class="btn btn-primary">Guardar</button>
 
                         </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
                         </div>
