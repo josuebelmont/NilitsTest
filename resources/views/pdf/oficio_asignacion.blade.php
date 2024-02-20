@@ -71,7 +71,7 @@
 </head>
 <body>
     <div class="header" >
-        <img src="{{ asset('imgs/logo.png') }}" alt="Logo" style="width: 100%; height: 15%;"> <!-- Asegúrate de ajustar la ruta a tu logo -->
+        <img src="{{ public_path('imgs/logo.png') }}" alt="" style="width: 100%; height: 15%;"> <!-- Asegúrate de ajustar la ruta a tu logo -->
 
     </div>
 

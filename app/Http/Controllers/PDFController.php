@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class PDFController extends Controller
 {
     //
@@ -82,7 +83,7 @@ public function constanciaTutoria(Request $request)
      }
 
     $pdf = PDF::loadView('pdf.constancia_tutoria',['maestro' => $maestro,
-    'tutorados' => $tutorados, 'half'=>$half, 'fechaActual'=>$fechaActual]);
+    'tutorados' => $tutorados, 'fechaActual'=>$fechaActual]);
     return $pdf->download('constancia_tutoria.pdf');
 }
 }

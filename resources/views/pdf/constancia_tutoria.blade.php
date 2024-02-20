@@ -67,9 +67,11 @@
 </head>
 <body>
     <div class="header" >
-        <img src="{{ asset('imgs/logo.png') }}" alt="Logo" style="width: 100%; height: 15%;"> <!-- Asegúrate de ajustar la ruta a tu logo -->
+        <img src="{{ public_path('imgs/logo.png') }}" alt="Logo" style="width: 100%; height: 15%;"> <!-- Asegúrate de ajustar la ruta a tu logo -->
 
     </div>
+
+    {{ url('imgs/logo.png') }}
 
     <div class="content " >
         <div class="d-flex align-items-center justify-content-center text-center" style="height: 100vh; text-align: center;">
@@ -92,7 +94,7 @@
 
         <div style=" width: 100%;">
             {{-- Primera mitad de tutorados --}}
-            <table style="width: 100%; font-size:100%; ">
+            <table style="width: 100%; font-size:100%; margin-top: 5%; ">
                 <thead>
                     <tr>
                         <th>Código</th>
