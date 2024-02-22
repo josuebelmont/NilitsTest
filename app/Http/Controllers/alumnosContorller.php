@@ -91,6 +91,13 @@ class alumnosContorller extends Controller
         return view('alumnos.alumnos_sin_tutor', compact('alumnos', 'tutores'));
     }
 
+    public function detalles($codigo)
+    {
+        $alumno = alumnos_model::where('codigo', $codigo)->first(); // Obtener los detalles del alumno según su código
+
+        return response()->json($alumno); // Devolver la vista parcial con los detalles del alumno
+    }
+
 
     public function asignar_tutor(Request $request, alumnos_model $alumno)
     {
@@ -186,14 +193,15 @@ class alumnosContorller extends Controller
     public function editar(Request $request, $codigo)
     {
         // Obtener el alumno a actualizar
-        $alumno = alumnos_model::where('codigo', '=', $codigo)->first();
+        $alumno = alumnos_model::where('codigo', '=', $request->codigo)->first();
 
         // Actualizar los datos del alumno
-        $alumno->nombre = $request->nombre;
+        $alumno->Nombre = $request->nombre;
         $alumno->correo = $request->correo;
         $alumno->calendarioTitulacion = $request->calendarioTitulacion;
         $alumno->ingreso = $request->ingreso;
 
+        $alumno->update();
         // Verificar si el campo de sexo está presente en la solicitud y asignarlo al modelo
         if ($request->filled('sexo')) {
             $alumno->sexo = $request->sexo;
@@ -226,6 +234,9 @@ class alumnosContorller extends Controller
 
         // Guardar los cambios en la base de datos
         $alumno->update();
+
+
+        //return $alumno;
 
         // Redireccionar o devolver una respuesta JSON según tu necesidad
         return redirect()->route('alumnos');

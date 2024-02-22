@@ -40,6 +40,8 @@ Route::get('alumnado',[alumnosContorller::class, 'alumnado_restringido'])->name(
 Route::get('alumnos',[alumnosContorller::class,'index'])->name('alumnos');
 
 
+Route::get('alumnos/detalles/all/{codigo}',[alumnosContorller::class,'detalles'])->name('alumnos/detalles/all');
+
 Route::post('/alumnos/crear', [alumnosContorller::class, 'store'])->name('/alumnos/crear');
 
 Route::post('registro', [usuarioController::class, 'registro'])->name('registro');
@@ -60,9 +62,9 @@ Route::get('/buscar-alumno', [alumnosContorller::class,'buscar'])->name('buscarA
 
 Route::get('/buscar-alumno/restricted', [alumnosContorller::class,'buscarAllRestricted'])->name('/buscar-alumno/restricted');
 
-Route::get('/buscar-alumno/all', [alumnosContorller::class,'buscarAll'])->name('buscarAlumno/all');
+Route::get('buscar-alumno/all', [alumnosContorller::class,'buscarAll'])->name('buscarAlumno/all');
 
-Route::put('/alumnos/update/{codigo}', [alumnosContorller::class, 'editar'])->name('/alumnos/update/');
+Route::put('/alumnos/update/{codigo}', [alumnosContorller::class,'editar'])->name('/alumnos/update/');
 
 
 //Ruta para el manejo de los maestros
