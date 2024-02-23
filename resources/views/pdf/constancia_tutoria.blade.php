@@ -29,7 +29,7 @@
         }
         body {
             font-family: Arial, sans-serif;
-            font-size: 14px;
+            font-size: 15px;
         }
         .header,
         .footer {
@@ -45,6 +45,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
+
         }
         table, th, td {
             border: 1px solid black;
@@ -71,9 +72,9 @@
 
     </div>
 
-    {{ url('imgs/logo.png') }}
 
-    <div class="content " >
+
+    <div class="content "  style="margin-top: 5%">
         <div class="d-flex align-items-center justify-content-center text-center" style="height: 100vh; text-align: center;">
             <div>
                 <h2 class="title">SE OTORGA LA PRESENTE</h2>
@@ -84,17 +85,11 @@
         </div>
 
 
-
-
-
-
-
-
         <p>Por haber impartido tutoría académica y permanente de 18 alumnos del Programa de Noviciado en la Licenciatura en Trabajo Social:</p>
 
         <div style=" width: 100%;">
             {{-- Primera mitad de tutorados --}}
-            <table style="width: 100%; font-size:100%; margin-top: 5%; ">
+            <table style="width: 100%; font-size:80%; margin-top: 5%; ">
                 <thead>
                     <tr>
                         <th>Código</th>
@@ -122,7 +117,8 @@
             <p style="clear: both; text-align: left;" >Durante el ciclo escolar 2023 B, periodo comprendido del 16 julio de 2023 al 15 de enero de 2024, según consta en informe presentado en tiempo y forma.</p>
             <p>Atentamente</p>
             <p>"Piensa y Trabaja"</p>
-            <p>Año del Legado de Frey Antonio Alcalde en Guadalajara</p>
+            <p>“30 años de la Autonom&iacute;a de la <br>
+                Universidad de Guadalajara y de su organizaci&oacute;n en Red”</p>
 
     <p>Guadalajara, Jal., a {{ $fechaActual }}</p>
 

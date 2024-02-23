@@ -32,7 +32,7 @@
         }
         body {
             font-family: Arial, sans-serif;
-            font-size: 14px;
+            font-size: 15px;
         }
         table {
             width: 100%;
@@ -118,7 +118,8 @@
                 <p style="clear: both; text-align: left;" >Durante el ciclo escolar 2023 B, periodo comprendido del 16 julio de 2023 al 15 de enero de 2024, según consta en informe presentado en tiempo y forma.</p>
                 <p>Atentamente</p>
                 <p>"Piensa y Trabaja"</p>
-                <p>Año del Legado de Frey Antonio Alcalde en Guadalajara</p>
+                <p>“30 años de la Autonom&iacute;a de la <br>
+                    Universidad de Guadalajara y de su organizaci&oacute;n en Red”</p>
                 <p>Guadalajara, Jal., a 3 de febrero de 2024</p>
 
 
