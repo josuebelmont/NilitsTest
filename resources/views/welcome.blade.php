@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="text-center mb-4">
-    <img src="{{ asset('imgs/LOGOfuenteNILITS.png') }}" alt="Logo" style="width: 150px;">
+    <img src="{{ asset('imgs/logo_NILITS23_color.png') }}" alt="Logo" style="width: 170px;">
 </div>
 <form method="POST" action="{{ route('login') }}">
     <!-- Directiva Blade para el token CSRF -->

@@ -31,12 +31,16 @@
 
         <form action="{{ route('buscarAlumno/all') }}" method="GET">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Buscar alumno por nombre" name="query">
+                <input type="text" class="form-control mr-5" placeholder="Buscar alumno por nombre o codigo" name="query">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                    <button class="btn btn-outline-primary mr-3" type="submit">Buscar</button>
+                </div>
+                <div class="input-group-append ms-2">
+                    <a class="btn btn-md btn-warning btn-block text-light" href="{{ route('alumnos') }}">Limpiar busqueda</a>
                 </div>
             </div>
         </form>
+
 
         <div class="row mb-3">
             <a href="{{ route('/alumnos/sintutor') }}" class="btn btn-warning text-light col-md-2 mr-5">Ver alumnos sin
@@ -96,11 +100,11 @@
                                 @endphp
                                 {{ $dictamenActual }}
                             </td>
-                            <td>{{ $alumno->tutor }}</td>
+                            <td>{{ $alumno->tutor_nombre }} {{$alumno->tutor_apellido}}</td>
                             <!-- Botón para activar el modal -->
                             <td>
                                 <i class="fas fa-edit edit-alumno-btn" role="button" data-toggle="modal"
-                                    data-target="#editAlumnoModal{{ $alumno->codigo }}"
+                                    data-target="#editAlumnoModal"
                                     data-codigo="{{ $alumno->codigo }}"
                                     data-Nombre="{{ $alumno->Nombre }}"></i>
                                 <!-- Modal para editar alumno -->
@@ -118,7 +122,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editAlumnoModalLabel">Editar Alumno {{ $alumno->Nombre }}</h5>
+                        <h5 class="modal-title" id="editAlumnoModalLabel">Editar Alumno</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -410,7 +414,7 @@
                                 <label for="genero">tutor</label>
                                 <select class="form-control" name="tutor" id="tutor">
                                     @foreach ($tutores as $tutor)
-                                        <option value="{{ $tutor->codigo }}">{{ $tutor->Nombre }}</option>
+                                        <option value="{{ $tutor->codigo }}">{{ $tutor->Nombre }} {{$alumno->tutor_apellido}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -441,15 +445,15 @@
 
 <!---->
 <script>
-    jQuery(document).ready(function($) {
-    $('.edit-alumno-btn').click(function() {
+    $(document).ready(function() {
+    $(document).on('click', '.edit-alumno-btn', function() {
         var codigo = $(this).data('codigo');
-        console.log('succes')
+        console.log('success');
         $.ajax({
-            url: 'alumnos/detalles/all/' + codigo ,
+            url: '{{ url('alumnos/detalles/all/') }}/' + codigo,
             type: 'GET',
             success: function(data) {
-                console.log('succes')
+                console.log('success');
                 $('#editAlumnoModalLabel').text('Editar Alumno ' + data.Nombre);
                 $('#editAlumnoModal #codigo').val(data.codigo);
                 $('#editAlumnoModal #nombre').val(data.Nombre);
@@ -467,6 +471,7 @@
         });
     });
 });
+
 
 
 </script>

@@ -61,178 +61,95 @@
                 </table>
             </div>
         </div>
-        <div class="modal fade" id="editAlumnoModal{{ $alumno->codigo }}" tabindex="-1" role="dialog"
-            aria-labelledby="editAlumnoModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editAlumnoModal" tabindex="-1" role="dialog" aria-labelledby="editAlumnoModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editAlumnoModalLabel">Editar Alumno {{ $alumno->Nombre }}</h5>
+                        <h5 class="modal-title" id="editAlumnoModalLabel">Datos del alumno</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form method="POST" action="">
-                        @csrf
-                        @method('PUT')
+                    <form>
                         <div class="modal-body">
                             <!-- Campos del formulario -->
-                            <input type="hidden" id="editCodigo" name="codigo">
+                            <input type="hidden" id="editCodigo" name="codigo" readonly>
                             <div class="form-group">
                                 <label for="codigo">Código</label>
-                                <input type="text" class="form-control" id="codigo" name="codigo" value="{{$alumno->codigo}}"
-                                    required>
+                                <input type="text" class="form-control" id="codigo" name="codigo" value="{{ $alumno->codigo }}" required readonly>
                             </div>
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="{{$alumno->Nombre}}"
-                                    required>
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $alumno->Nombre }}" required readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="correo">Correo</label>
-                                <input type="email" class="form-control" id="correo" value="{{ $alumno->correo }}"
-                                    name="correo">
+                                <input type="email" class="form-control" id="correo" value="{{ $alumno->correo }}" name="correo" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="telefono">Telefono</label>
-                                <input type="text" class="form-control" id="telefono" value="{{ $alumno->telefono }}"
-                                    name="telefono">
+                                <input type="text" class="form-control" id="telefono" value="{{ $alumno->telefono }}" name="telefono" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="telefono">Calendario de ingreso</label>
-                            <select class="form-control"  name="ingreso" id="ingreso">
-                                @php
-                                    $startYear = 1990;
-                                    $endYear = date('Y');
-                                @endphp
-
-                                @for ($year = $startYear; $year <= $endYear; $year++)
-                                    <option value="{{ $year }} A">{{ $year }} A</option>
-                                    <option value="{{ $year }} B">{{ $year }} B</option>
-                                @endfor
-                            </select>
+                                <label for="ingreso">Calendario de ingreso</label>
+                                <input type="text" class="form-control" name="ingreso" id="ingreso" value="{{ $alumno->ingreso }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="genero">Genero</label>
-                                <select class="form-control" id="genero" name="genero">
-                                    <option value="Masculino">Masculino</option>
-                                    <option value="Femenino">Femenino</option>
-                                </select>
+                                <input type="text" class="form-control" id="genero" name="genero" value="{{ $alumno->sexo == 1 ? 'Femenino' : 'Masculino' }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="procedencia">Procedencia</label>
-                                <select class="form-control" name="procedencia">
-                                    <option value="0">Aguascalientes</option>
-                                    <option value="1">Baja California</option>
-                                    <option value="2">Baja California Sur</option>
-                                    <option value="3">Campeche</option>
-                                    <option value="4">Chiapas</option>
-                                    <option value="5">Chihuahua</option>
-                                    <option value="6">Ciudad de México</option>
-                                    <option value="7">Coahuila</option>
-                                    <option value="8">Colima</option>
-                                    <option value="9">Durango</option>
-                                    <option value="10">Guanajuato</option>
-                                    <option value="11">Guerrero</option>
-                                    <option value="12">Hidalgo</option>
-                                    <option value="13">Jalisco</option>
-                                    <option value="14">México</option>
-                                    <option value="15">Michoacán</option>
-                                    <option value="16">Morelos</option>
-                                    <option value="17">Nayarit</option>
-                                    <option value="18">Nuevo León</option>
-                                    <option value="19">Oaxaca</option>
-                                    <option value="20">Puebla</option>
-                                    <option value="21">Querétaro</option>
-                                    <option value="22">Quintana Roo</option>
-                                    <option value="23">San Luis Potosí</option>
-                                    <option value="24">Sinaloa</option>
-                                    <option value="25">Sonora</option>
-                                    <option value="26">Tabasco</option>
-                                    <option value="27">Tamaulipas</option>
-                                    <option value="28">Tlaxcala</option>
-                                    <option value="29">Veracruz</option>
-                                    <option value="30">Yucatán</option>
-                                    <option value="31">Zacatecas</option>
-                                </select>
-
-
-
-
+                                <input type="text" class="form-control" id="procedencia" name="procedencia" value="{{ $alumno->nombre_estado }}" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="fechaNac">Fecha de Nacimiento</label>
-                                <input type="date" class="form-control" id="fechaNac"
-                                    name="fechaNac">
+                                <input type="text" class="form-control" id="fechaNac" name="fechaNac" value="{{ $alumno->fechaNac }}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="egreso">Calendario de Egreso</label>
-                                <select class="form-control"  name="calendarioTitulacion" id="calendarioTitulacion">
-                                    @php
-                                        $startYear = 1990;
-                                        $endYear = date('Y');
-                                    @endphp
-
-                                    @for ($year = $startYear; $year <= $endYear; $year++)
-                                        <option value="{{ $year }} A">{{ $year }} A</option>
-                                        <option value="{{ $year }} B">{{ $year }} B</option>
-                                    @endfor
-                                </select>
+                                <label for="calendarioTitulacion">Calendario de Egreso</label>
+                                <input type="text" class="form-control" id="calendarioTitulacion" name="calendarioTitulacion" value="{{ $alumno->calendarioTitulacion }}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="opcionTitulacion">Opción de Titulacion</label>
-                                <input type="text" class="form-control" id="opcionTitulacion"
-                                    name="opcionTitulacion">
+                                <label for="opcionTitulacion">Opción de Titulación</label>
+                                <input type="text" class="form-control" id="opcionTitulacion" name="opcionTitulacion" value="{{ $alumno->tipoTitulacion }}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="fechaTitulacion">Fecha de titulacion</label>
-                                <input type="date" class="form-control" id="fechaTitulacion"
-                                    name="fechaTitulacion">
+                                <label for="fechaTitulacion">Fecha de titulación</label>
+                                <input type="text" class="form-control" id="fechaTitulacion" name="fechaTitulacion" value="{{ $alumno->fechaTitulacion }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="estatus">Estatus del Alumno</label>
-                                <select class="form-control" id="estatus" name="estatus">
-                                    <option value="1">Activo</option>
-                                    <option value="4">Baja</option>
-                                    <option value="3">Egresado</option>
-                                </select>
+                                @if ($alumno->estatus == 1)
+                                    <input type="text" class="form-control" value="Activo" readonly>
+                                @elseif ($alumno->estatus == 4)
+                                    <input type="text" class="form-control" value="Baja" readonly>
+                                @elseif ($alumno->estatus == 3)
+                                    <input type="text" class="form-control" value="Egresado" readonly>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="acta">Acta</label>
-                                <input type="text" class="form-control" id="acta"
-                                    name="acta">
+                                <input type="text" class="form-control" id="acta" name="acta" value="{{ $alumno->acta }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="libro">Libro</label>
-                                <input type="text" class="form-control" id="libro"
-                                    name="libro">
+                                <input type="text" class="form-control" id="libro" name="libro" value="{{ $alumno->libro }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="dictamen">Dictámenes</label>
-                                <input type="text" class="form-control" id="dictamenInput" placeholder="Añadir dictamen">
-                                <div id="dictamenContainer"></div>
-                                <input type="hidden" name="dictamen" id="dictamenHidden">
-                            </div>
-                            <h4>Listado de dictamenes</h4>
-                            @php
-                                    $dictamenes = explode('.', $alumno->dictamen);
-                                @endphp
                                 <ul>
                                     @foreach ($dictamenes as $dictamen)
-
-                                        <input type="text" value="{{ $dictamen }}">
+                                        <input type="text" class="form-control" value="{{ $dictamen }}" readonly>
                                     @endforeach
                                 </ul>
-
-
-
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary"
-                                data-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                         </div>
                     </form>
                 </div>
@@ -245,6 +162,37 @@
 
 
     @section('scripts')
+
+    <script>
+        jQuery(document).ready(function($) {
+        $('.edit-alumno-btn').click(function() {
+            var codigo = $(this).data('codigo');
+            console.log('succes')
+            $.ajax({
+                url: 'alumnos/detalles/all/' + codigo ,
+                type: 'GET',
+                success: function(data) {
+                    console.log('succes')
+                    $('#editAlumnoModalLabel').text('Editar Alumno ' + data.Nombre);
+                    $('#editAlumnoModal #codigo').val(data.codigo);
+                    $('#editAlumnoModal #nombre').val(data.Nombre);
+                    $('#editAlumnoModal #correo').val(data.correo);
+                    $('#editAlumnoModal #telefono').val(data.telefono);
+                    $('#editAlumnoModal #opcionTitulacion').val(data.opcionTitulacion);
+                    $('#editAlumnoModal #acta').val(data.acta);
+                    $('#editAlumnoModal #acta').val(data.libro);
+
+                    $('#editAlumnoModal').modal('show');
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+    });
+
+
+    </script>
         <script>
             $(document).ready(function() {
                 $('.modal').on('shown.bs.modal', function() {

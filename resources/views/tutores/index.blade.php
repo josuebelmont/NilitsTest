@@ -30,7 +30,7 @@
                                     data-carga-horaria="{{ $maestro->cargaHoraria }}"
                                     data-numero-tutorados="{{ $maestro->NumeroTutorados }}"
                                     data-grado="{{ $maestro->grado }}" data-nombramiento="{{ $maestro->nombramiento }}">
-                                    {{ $maestro->Nombre }}
+                                    {{ $maestro->Nombre }} {{ $maestro->Apellido }}
                                 </option>
                             @endforeach
                         </select>

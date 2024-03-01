@@ -22,8 +22,9 @@ class alumnosContorller extends Controller
         $alumnos = DB::table('alumnos')
             ->leftJoin('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
             ->leftJoin('maestros', 'alumno_tutor.id_tutor', '=', 'maestros.codigo')
-            ->select('alumnos.*', 'maestros.Nombre as tutor')
-            ->paginate(10); // Aquí especificas cuántos alumnos por página quieres
+            ->select('alumnos.*', 'maestros.Nombre as tutor_nombre', 'maestros.Apellido as tutor_apellido')
+            ->paginate(10);
+
 
         // Listar a los maestros para poder asignarlos al crear un registro
         $tutores = maestrosModel::all();
@@ -40,16 +41,21 @@ class alumnosContorller extends Controller
         $totalActivos = alumnos_model::where('estatus', 1)->count();
         $totalBajas = alumnos_model::where('estatus', 4)->count();
 
-        // Solo mostrar a los alumnos con tutor y aplicar paginación
         $alumnos = DB::table('alumnos')
+        ->leftJoin('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
+        ->leftJoin('maestros', 'alumno_tutor.id_tutor', '=', 'maestros.codigo')
+        ->select('alumnos.*', 'maestros.Nombre as tutor_nombre', 'maestros.Apellido as tutor_apellido')
+        ->paginate(10);
+        // Solo mostrar a los alumnos con tutor y aplicar paginación
+        /* $alumnos = DB::table('alumnos')
             ->leftJoin('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
             ->leftJoin('maestros', 'alumno_tutor.id_tutor', '=', 'maestros.codigo')
             ->select('alumnos.*', 'maestros.Nombre as tutor')
-            ->paginate(10); // Aquí especificas cuántos alumnos por página quieres
+            ->paginate(10); */ // Aquí especificas cuántos alumnos por página quieres
 
-            foreach ($alumnos as $alumno) {
-                $alumno->nombre_estado = $this->obtenerNombreEstado($alumno->procedencia);
-            }
+        foreach ($alumnos as $alumno) {
+            $alumno->nombre_estado = $this->obtenerNombreEstado($alumno->procedencia);
+        }
 
         // Listar a los maestros para poder asignarlos al crear un registro
         $tutores = maestrosModel::all();
@@ -84,8 +90,10 @@ class alumnosContorller extends Controller
             ->leftJoin('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
             ->leftJoin('maestros', 'alumno_tutor.id_tutor', '=', 'maestros.codigo')
             ->whereNull('maestros.codigo')
+            ->where('alumnos.estatus', '=', 1) // Filtrar por estatus igual a 1
             ->select('alumnos.*')
             ->paginate(10);
+
         $tutores = maestrosModel::all();
 
         return view('alumnos.alumnos_sin_tutor', compact('alumnos', 'tutores'));
@@ -103,7 +111,7 @@ class alumnosContorller extends Controller
     {
         $validatedData = $request->validate([
             'codigo' => 'required',
-            'nombre' => 'required',
+            //'nombre' => 'required',
             //'telefono' => 'required',
             //'sexo' => 'required',
             'procedencia' => 'required',
@@ -118,7 +126,7 @@ class alumnosContorller extends Controller
 
         $tutor_alumno = new alumno_tutorModel();
         //$alumno->codigo = $validatedData['codigo'];
-        $alumno->Nombre = $validatedData['nombre'];
+        //$alumno->Nombre = $validatedData['nombre'];
         //$alumno->telefono = $validatedData['telefono'];
         //$alumno->correo = $validatedData['correo'];
         //$alumno->sexo = $validatedData['sexo'];
@@ -126,8 +134,8 @@ class alumnosContorller extends Controller
         //$alumno->fechaNac = $validatedData['fechaNac'];
         //$alumno->dictamen = $validatedData['dictamen'];
         //$alumno->estatus = $validatedData['estatus'];
-        $tutor_alumno->codigo = $validatedData['codigo'];
-        $tutor_alumno->id_tutor = $validatedData['tutor'];
+        $tutor_alumno->codigo = $request->codigo;
+        $tutor_alumno->id_tutor = $request->tutor;
         $tutor_alumno->activo = 1;
         // Asigna el resto de los campos
         $tutor_alumno->save();
@@ -249,7 +257,9 @@ class alumnosContorller extends Controller
 
         // Realizar la consulta para buscar alumnos por nombre
 
-        $alumnos = alumnos_model::where('Nombre', 'like', '%' . $query . '%')->paginate(10);
+        $alumnos = alumnos_model::where('Nombre', 'like', '%' . $query . '%')
+            ->orWhere('alumnos.codigo', 'like', '%' . $query . '%')
+            ->paginate(10);
         $tutores = maestrosModel::all();
 
 
@@ -263,11 +273,12 @@ class alumnosContorller extends Controller
 
         // Realizar la consulta para buscar alumnos por nombre
         $alumnos = DB::table('alumnos')
-    ->leftJoin('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
-    ->leftJoin('maestros', 'alumno_tutor.id_tutor', '=', 'maestros.codigo')
-    ->select('alumnos.*', 'maestros.Nombre as tutor')
-    ->where('alumnos.Nombre', 'like', '%' . $query . '%')
-    ->paginate(10);
+            ->leftJoin('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
+            ->leftJoin('maestros', 'alumno_tutor.id_tutor', '=', 'maestros.codigo')
+            ->select('alumnos.*', 'maestros.Nombre as tutor_nombre', 'maestros.Apellido as tutor_apellido')
+            ->where('alumnos.Nombre', 'like', '%' . $query . '%')
+            ->orWhere('alumnos.codigo', 'like', '%' . $query . '%')
+            ->paginate(10);
 
 
         $totalRegistros = alumnos_model::count();
@@ -287,8 +298,15 @@ class alumnosContorller extends Controller
     {
         $query = $request->input('query');
 
-        // Realizar la consulta para buscar alumnos por nombre
-        $alumnos = alumnos_model::where('Nombre', 'like', '%' . $query . '%')->paginate(10);
+
+        $alumnos = DB::table('alumnos')
+            ->leftJoin('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
+            ->leftJoin('maestros', 'alumno_tutor.id_tutor', '=', 'maestros.codigo')
+            ->select('alumnos.*', 'maestros.Nombre as tutor_nombre', 'maestros.Apellido as tutor_apellido')
+            ->where('alumnos.Nombre', 'like', '%' . $query . '%')
+            ->orWhere('alumnos.codigo', 'like', '%' . $query . '%')
+            ->paginate(10);
+
 
         $totalRegistros = alumnos_model::count();
         $totalEgresados = alumnos_model::where('estatus', 3)->count();

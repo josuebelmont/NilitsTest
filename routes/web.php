@@ -50,11 +50,11 @@ Route::post('registro', [usuarioController::class, 'registro'])->name('registro'
 //ruta para mostrar alumnos sin tutor
 Route::get('/alumnos/sintutor',[alumnosContorller::class,'alumno_sin_tutor'])->name('/alumnos/sintutor');
 
-Route::put('/alumnos/asingnar/{codigo}',[alumnosContorller::class,'asignar_tutor'])->name('/alumnos/asingnar/');
+Route::post('/alumnos/asingnar/',[alumnosContorller::class,'asignar_tutor'])->name('/alumnos/asingnar/');
 
 Route::get('/buscar-alumno', [alumnosContorller::class,'buscar'])->name('buscarAlumno');
 
-Route::get('/buscar-alumno', [alumnosContorller::class,'buscar'])->name('buscarAlumno');
+//Route::get('/buscar-alumno', [alumnosContorller::class,'buscar'])->name('buscarAlumno');
 
 
 
