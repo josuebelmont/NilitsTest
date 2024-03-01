@@ -106,6 +106,12 @@
     <div class="container">
         <p><strong>@if ($maestro->grado  == 'Doctor')
             Dr.
+        @elseif ($maestro->grado  == 'Doctora')
+            Dra.
+        @elseif ($maestro->grado  == 'Maestro')
+            Mtro.
+        @elseif ($maestro->grado  == 'Maestra')
+            Mtra.
         @endif {{ $maestro->Nombre }} {{ $maestro->Apellido }}</strong></p>
         <p>Tutor(a) del Programa Nivelación a la Licenciatura en Trabajo Social</p>
         <p>Presente</p>
@@ -165,10 +171,15 @@
         </div>
         <div class="clear-fix"></div>
         <!-- Clear fix para asegurarnos de que el flujo del documento continúa normalmente después de los elementos flotantes -->
+        <div>
+            <p>Dra. Narali Esquivel Bautista</p>
+            <p>Coordinadora de Tutorías de la NILITS</p>
+
+        </div>
     </div>
 
     <div class="footer" style="position: fixed; bottom: 0; width: 100%; text-align: center; margin-top: 45%; font-size: 10px">
-        <p>Coordinadora de Tutorías de la NILITS</p>
+
         <p>Av. de los Maestros y Alcalde, Edificio "N" 2da. planta, Col. La Normal</p>
         <p>Guadalajara, Jal., México</p>
     </div>

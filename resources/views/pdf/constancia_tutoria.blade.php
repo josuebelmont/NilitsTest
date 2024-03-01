@@ -85,7 +85,7 @@
         </div>
 
 
-        <p>Por haber impartido tutoría académica y permanente de 18 alumnos del Programa de Noviciado en la Licenciatura en Trabajo Social:</p>
+        <p style="text-align: center">Por haber impartido tutoría académica y permanente de 18 alumnos del Programa de Noviciado en la Licenciatura en Trabajo Social:</p>
 
         <div style=" width: 100%;">
             {{-- Primera mitad de tutorados --}}
@@ -135,11 +135,17 @@
             <p>Dra. María Rosas Moreno</p>
             <p>Coordinadora de Carrera de la NILITS</p>
         </div>
+
         <div class="clear-fix"></div> <!-- Clear fix para asegurarnos de que el flujo del documento continúa normalmente después de los elementos flotantes -->
+        <div class="text-justify" style="width: 100%; text-align: center">
+            <p>Dra. Narali Esquivel Bautista</p>
+            <p>Coordinadora de Tutorías de la NILITS</p>
+
+        </div>
     </div>
 
-    <div class="footer page-break">
-        <p>Coordinadora de Tutorías de la NILITS</p>
+    <div class="footer" style="position: fixed; bottom: 0; width: 100%; text-align: center; margin-top: 45%; font-size: 10px">
+
         <p>Av. de los Maestros y Alcalde, Edificio "N" 2da. planta, Col. La Normal</p>
         <p>Guadalajara, Jal., México</p>
     </div>
