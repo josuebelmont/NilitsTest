@@ -122,7 +122,7 @@
 
                             <div class="mb-3">
                                 <label for="observaciones" class="form-label">Observaciones:</label>
-                                <textarea class="form-control" id="observaciones" name="observaciones"></textarea>
+                                <textarea class="form-control" id="observaciones" name="observaciones" required></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary">Guardar</button>

@@ -107,19 +107,19 @@ class alumnosContorller extends Controller
     }
 
 
-    public function asignar_tutor(Request $request, alumnos_model $alumno)
+    public function asignar_tutor(Request $request)
     {
         $validatedData = $request->validate([
-            'codigo' => 'required',
+            //'codigo' => 'required',
             //'nombre' => 'required',
             //'telefono' => 'required',
             //'sexo' => 'required',
-            'procedencia' => 'required',
+            //'procedencia' => 'required',
             //'correo' => 'required',
             //'fechaNac' => 'required',
             //'dictamen' => 'required',
             //'estatus' => 'required',
-            'tutor' => 'required'
+            //'tutor' => 'required'
             // Agrega aquí el resto de las validaciones necesarias
         ]);
 
@@ -139,7 +139,7 @@ class alumnosContorller extends Controller
         $tutor_alumno->activo = 1;
         // Asigna el resto de los campos
         $tutor_alumno->save();
-        $alumno->update();
+       //$alumno->update();
 
         return redirect()->back()->with('success', 'Alumno creado exitosamente');
     }

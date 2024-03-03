@@ -52,8 +52,10 @@
                                     {{ $dictamenActual }}
                                 </td>
                                 <td>
-                                    <i class="fas fa-edit" role="button" data-toggle="modal"
-                                        data-target="#editAlumnoModal{{ $alumno->codigo }}"></i>
+                                    <i class="fas fa-edit edit-alumno-btn" role="button" data-toggle="modal"
+                                    data-target="#editAlumnoModal"
+                                    data-codigo="{{ $alumno->codigo }}"
+                                    data-Nombre="{{ $alumno->Nombre }}"></i>
                                 </td>
                             </tr>
                         @endforeach
@@ -76,75 +78,67 @@
                             <input type="hidden" id="editCodigo" name="codigo" readonly>
                             <div class="form-group">
                                 <label for="codigo">Código</label>
-                                <input type="text" class="form-control" id="codigo" name="codigo" value="{{ $alumno->codigo }}" required readonly>
+                                <input type="text" class="form-control" id="codigo" name="codigo" value="" required readonly>
                             </div>
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $alumno->Nombre }}" required readonly>
+                                <input type="text" class="form-control" id="nombre" name="nombre" value="" required readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="correo">Correo</label>
-                                <input type="email" class="form-control" id="correo" value="{{ $alumno->correo }}" name="correo" readonly>
+                                <input type="email" class="form-control" id="correo" value="" name="correo" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="telefono">Telefono</label>
-                                <input type="text" class="form-control" id="telefono" value="{{ $alumno->telefono }}" name="telefono" readonly>
+                                <input type="text" class="form-control" id="telefono" value="" name="telefono" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="ingreso">Calendario de ingreso</label>
-                                <input type="text" class="form-control" name="ingreso" id="ingreso" value="{{ $alumno->ingreso }}" readonly>
+                                <input type="text" class="form-control" name="ingreso" id="ingreso" value="" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="genero">Genero</label>
-                                <input type="text" class="form-control" id="genero" name="genero" value="{{ $alumno->sexo == 1 ? 'Femenino' : 'Masculino' }}" readonly>
+                                <input type="text" class="form-control" id="genero" name="genero" value="" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="procedencia">Procedencia</label>
-                                <input type="text" class="form-control" id="procedencia" name="procedencia" value="{{ $alumno->nombre_estado }}" readonly>
+                                <input type="text" class="form-control" id="procedencia" name="procedencia" value="" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="fechaNac">Fecha de Nacimiento</label>
-                                <input type="text" class="form-control" id="fechaNac" name="fechaNac" value="{{ $alumno->fechaNac }}" readonly>
+                                <input type="text" class="form-control" id="fechaNac" name="fechaNac" value="" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="calendarioTitulacion">Calendario de Egreso</label>
-                                <input type="text" class="form-control" id="calendarioTitulacion" name="calendarioTitulacion" value="{{ $alumno->calendarioTitulacion }}" readonly>
+                                <input type="text" class="form-control" id="calendarioTitulacion" name="calendarioTitulacion" value="" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="opcionTitulacion">Opción de Titulación</label>
-                                <input type="text" class="form-control" id="opcionTitulacion" name="opcionTitulacion" value="{{ $alumno->tipoTitulacion }}" readonly>
+                                <input type="text" class="form-control" id="opcionTitulacion" name="opcionTitulacion" value="" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="fechaTitulacion">Fecha de titulación</label>
-                                <input type="text" class="form-control" id="fechaTitulacion" name="fechaTitulacion" value="{{ $alumno->fechaTitulacion }}" readonly>
+                                <input type="text" class="form-control" id="fechaTitulacion" name="fechaTitulacion" value="" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="estatus">Estatus del Alumno</label>
-                                @if ($alumno->estatus == 1)
-                                    <input type="text" class="form-control" value="Activo" readonly>
-                                @elseif ($alumno->estatus == 4)
-                                    <input type="text" class="form-control" value="Baja" readonly>
-                                @elseif ($alumno->estatus == 3)
-                                    <input type="text" class="form-control" value="Egresado" readonly>
-                                @endif
+
                             </div>
                             <div class="form-group">
                                 <label for="acta">Acta</label>
-                                <input type="text" class="form-control" id="acta" name="acta" value="{{ $alumno->acta }}" readonly>
+                                <input type="text" class="form-control" id="acta" name="acta" value="" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="libro">Libro</label>
-                                <input type="text" class="form-control" id="libro" name="libro" value="{{ $alumno->libro }}" readonly>
+                                <input type="text" class="form-control" id="libro" name="libro" value="" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="dictamen">Dictámenes</label>
                                 <ul>
-                                    @foreach ($dictamenes as $dictamen)
-                                        <input type="text" class="form-control" value="{{ $dictamen }}" readonly>
-                                    @endforeach
+
                                 </ul>
                             </div>
                         </div>
@@ -164,15 +158,15 @@
     @section('scripts')
 
     <script>
-        jQuery(document).ready(function($) {
-        $('.edit-alumno-btn').click(function() {
+        $(document).ready(function() {
+        $(document).on('click', '.edit-alumno-btn', function() {
             var codigo = $(this).data('codigo');
-            console.log('succes')
+            console.log('success');
             $.ajax({
-                url: 'alumnos/detalles/all/' + codigo ,
+                url: '{{ url('alumnos/detalles/all/') }}/' + codigo,
                 type: 'GET',
                 success: function(data) {
-                    console.log('succes')
+                    console.log('success');
                     $('#editAlumnoModalLabel').text('Editar Alumno ' + data.Nombre);
                     $('#editAlumnoModal #codigo').val(data.codigo);
                     $('#editAlumnoModal #nombre').val(data.Nombre);
@@ -192,15 +186,9 @@
     });
 
 
+
     </script>
-        <script>
-            $(document).ready(function() {
-                $('.modal').on('shown.bs.modal', function() {
-                    $(this).find('.select2').select2({
-                        theme: 'bootstrap4'
-                    });
-                });
-            });
-        </script>
+
+
     @endsection
 @endif
