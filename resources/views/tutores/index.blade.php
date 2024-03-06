@@ -7,7 +7,7 @@
     @section('content')
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-2">
-                <h1>NILITS</h1>
+                <h1 class="mb-0"> <img src="{{ asset('imgs/logo_NILITS23_color.png') }}" alt="Logo" style="width: 170px;"></h1>
                 <form method="POST" class="btn btn-danger mt-3" action="{{ route('logout') }}">
                     @csrf
                     <button class="btn text-light" type="submit">
@@ -17,7 +17,7 @@
             </div>
 
 
-            <h2 class="mb-4 bg-warning text-light">Gestionar profesores</h2>
+            <h2 class="mb-4 text-light" style="background-color: rgb(82, 82, 255)">Gestionar profesores</h2>
 
             <!-- Selector de Tutores -->
             <div class="row mb-4">
@@ -44,10 +44,10 @@
                         <p id="grado">Grado: </p>
                         <p id="nombramiento">Nombramiento: </p>
                         <!-- Botones o links para generar documentos -->
-                        <button id="btnOficioAsignacion" class="btn btn-primary">Oficio de Asignación</button>
-                        <button id="btnConstanciaTutoria" class="btn btn-secondary">Constancia de Tutoría</button>
+                        <button id="btnOficioAsignacion" class="btn text-light " style="background-color: rgb(0, 0, 169)" >Oficio de Asignación</button>
+                        <button id="btnConstanciaTutoria" class="btn text-light" style="background-color: rgb(0, 0, 169)" >Constancia de Tutoría</button>
 
-                        <button class="btn btn-primary" onclick="location.href='{{ url('/home') }}'">Volver al Menú</button>
+                        <button class="btn btn-secondary"  onclick="location.href='{{ url('/home') }}'">Volver al Menú</button>
                     </div>
                 </div>
             </div>

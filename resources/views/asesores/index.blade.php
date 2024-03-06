@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-2">
-        <h1>NILITS</h1>
+        <h1 class="mb-0"> <img src="{{ asset('imgs/logo_NILITS23_color.png') }}" alt="Logo" style="width: 170px;"></h1>
         <form method="POST" class="btn btn-danger mt-3" action="{{ route('logout') }}">
             @csrf
             <button class="btn text-light" type="submit">
@@ -13,7 +13,7 @@
         </form>
     </div>
 
-    <h2 class="mb-4 bg-warning text-light">Gestionar profesores</h2>
+    <h2 class="mb-4  text-light" style="background-color: rgb(82, 82, 255)">Gestionar profesores</h2>
 
     <!-- Barra de búsqueda -->
     <input class="form-control mb-3" type="text" id="searchInput" placeholder="Buscar">
@@ -46,7 +46,7 @@
     </div>
 
     <div class="text-center">
-        <button class="btn btn-warning text-light" type="button" data-toggle="modal" data-target="#agregar">AGREGAR
+        <button class="btn text-light" style="background-color: rgb(0, 0, 169)" type="button" data-toggle="modal" data-target="#agregar">AGREGAR
             PROFESOR</button>
 
         {{-- Modal para añadir maestro --}}

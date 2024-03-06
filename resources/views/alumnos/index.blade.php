@@ -19,7 +19,7 @@
     <div class="container mt-4">
         <!-- Encabezado -->
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <h1>NILITS</h1>
+            <h1 class="mb-0"> <img src="{{ asset('imgs/logo_NILITS23_color.png') }}" alt="Logo" style="width: 170px;"></h1>
             <form method="POST" class="btn btn-danger mt-3" action="{{ route('logout') }}">
                 @csrf
                 <button class="btn text-light" type="submit">
@@ -27,23 +27,23 @@
                 </button>
             </form>
         </div>
-        <h2 class="mb-4 bg-warning text-light">Gestionar Alumnos</h2>
+        <h2 class="mb-4 text-light" style="background-color: rgb(82, 82, 255)"  >Gestionar Alumnos</h2>
 
         <form action="{{ route('buscarAlumno/all') }}" method="GET">
             <div class="input-group mb-3">
                 <input type="text" class="form-control mr-5" placeholder="Buscar alumno por nombre o codigo" name="query">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-primary mr-3" type="submit">Buscar</button>
+                    <button class="btn text-light mr-3" style="background-color: rgb(0, 0, 169)"  type="submit">Buscar</button>
                 </div>
                 <div class="input-group-append ms-2">
-                    <a class="btn btn-md btn-warning btn-block text-light" href="{{ route('alumnos') }}">Limpiar busqueda</a>
+                    <a class="btn btn-md btn-secondary btn-block text-light" href="{{ route('alumnos') }}">Limpiar busqueda</a>
                 </div>
             </div>
         </form>
 
 
         <div class="row mb-3">
-            <a href="{{ route('/alumnos/sintutor') }}" class="btn btn-warning text-light col-md-2 mr-5">Ver alumnos sin
+            <a href="{{ route('/alumnos/sintutor') }}" class="btn text-light col-md-2 mr-5" style="background-color: rgb(0, 0, 169)">Ver alumnos sin
                 tutor</a>
 
             <!-- Estadísticas rápidas -->
@@ -433,7 +433,7 @@
 
         <!-- Botones de acción -->
         <div class="text-center">
-            <button class="btn btn-warning text-light" type="button" data-toggle="modal" data-target="#agregar">Agregar
+            <button class="btn text-light" style="background-color: rgb(0, 0, 169)" type="button" data-toggle="modal" data-target="#agregar">Agregar
                 Alumno</button>
             <a href="{{ route('/home') }}" class="btn btn-secondary">Volver al menu</a>
         </div>

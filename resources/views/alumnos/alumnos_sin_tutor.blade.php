@@ -17,7 +17,7 @@
 @endsection
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-2">
-        <h1>NILITS</h1>
+        <h1 class="mb-0"> <img src="{{ asset('imgs/logo_NILITS23_color.png') }}" alt="Logo" style="width: 170px;"></h1>
         <form method="POST" class="btn btn-danger mt-3" action="{{ route('logout') }}">
             @csrf
             <button class="btn text-light" type="submit">
@@ -25,7 +25,7 @@
             </button>
         </form>
     </div>
-    <h2 class="mb-4 bg-warning text-light">Gestionar Alumnos sin tutor</h2>
+    <h2 class="mb-4 text-light" style="background-color: rgb(82, 82, 255)">Gestionar Alumnos sin tutor</h2>
 
     <form action="{{ route('buscarAlumno') }}" method="GET">
         <div class="input-group mb-3 ">

@@ -17,19 +17,19 @@
     <div class="container mt-4">
         <!-- Encabezado -->
         <div class="d-flex justify-content-between align-items-center mb-2">
-            <h1>NILITS</h1>
-            <a class="btn btn-warning text-light" href="{{ route('/') }}">Volver al inicio</a>
+            <h1 class="mb-0"> <img src="{{ asset('imgs/logo_NILITS23_color.png') }}" alt="Logo" style="width: 170px;"></h1>
+            <a class="btn btn-danger text-light" href="{{ route('/') }}">Volver al inicio</a>
         </div>
-        <h2 class="mb-4 bg-warning text-light">Gestionar Alumnos</h2>
+        <h2 class="mb-4  text-light" style="background-color: rgb(82, 82, 255)">Gestionar Alumnos</h2>
 
         <form action="{{ route('/buscar-alumno/restricted') }}" method="GET">
             <div class="input-group mb-3">
                 <input type="text" class="form-control mr-5" placeholder="Buscar alumno por nombre o codigo" name="query">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-primary mr-3" type="submit">Buscar</button>
+                    <button class="btn text-light mr-3" style="background-color: rgb(0, 0, 169)"  type="submit">Buscar</button>
                 </div>
                 <div class="input-group-append ms-2">
-                    <a class="btn btn-md btn-warning btn-block text-light" href="{{ route('alumnado') }}">Limpiar busqueda</a>
+                    <a class="btn btn-md btn-secondary btn-block text-light" href="{{ route('alumnado') }}">Limpiar busqueda</a>
                 </div>
             </div>
         </form>

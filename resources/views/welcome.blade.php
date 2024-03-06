@@ -17,10 +17,10 @@
         <label for="inputPassword">Contraseña</label>
         <input type="password" id="pass" name="pass" class="form-control" placeholder="Contraseña" required>
     </div>
-    <button class="btn btn-lg btn-warning btn-block text-light" type="submit">Iniciar Sesión</button>
+    <button class="btn btn-lg text-light" style="background-color: rgb(0, 0, 169)" type="submit">Iniciar Sesión</button>
 </form>
 
-<button class="btn btn-lg btn-warning btn-block text-light" type="button" data-toggle="modal"
+<button class="btn btn-lg  text-light" style="background-color: rgb(0, 0, 169)" type="button" data-toggle="modal"
     data-target="#registroProfesorModal">Darme de Alta</button>
 
 <!-- Modal de Registro de Profesor -->
@@ -59,5 +59,5 @@
         </div>
     </div>
 </div>
-<a class="btn btn-lg btn-warning btn-block text-light" href="{{ route('alumnado') }}">Ver Alumnado</a>
+<a class="btn btn-lg  text-light" style="background-color: rgb(0, 0, 169)" href="{{ route('alumnado') }}">Ver Alumnado</a>
 @endsection

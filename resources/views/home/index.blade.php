@@ -23,7 +23,7 @@
     <div class="container mt-5">
         <!-- Encabezado con el título y la opción de cerrar sesión -->
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="mb-0">NILITS</h1>
+            <h1 class="mb-0"> <img src="{{ asset('imgs/logo_NILITS23_color.png') }}" alt="Logo" style="width: 170px;"></h1>
 
             <form method="POST" class="btn btn-danger mt-3" action="{{ route('logout') }}">
                 @csrf
