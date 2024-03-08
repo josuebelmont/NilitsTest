@@ -68,7 +68,7 @@
 </head>
 <body>
     <div class="header" >
-        <img src="{{ public_path('imgs/logo.png') }}" alt="Logo" style="width: 100%; height: 15%;"> <!-- Asegúrate de ajustar la ruta a tu logo -->
+        <img src="{{ public_path('imgs/udg_logo.png') }}" alt="Logo" style="width: 65px; height: 1.4cm; margin: 3px"> <img src="{{ public_path('imgs/membrete.png')}}" style="width: 70%; height: 2.5cm; margin: 3px"  alt=""> <!-- Asegúrate de ajustar la ruta a tu logo -->
 
     </div>
 
@@ -80,7 +80,15 @@
                 <h2 class="title">SE OTORGA LA PRESENTE</h2>
                 <h3>CONSTANCIA</h3>
                 <p>A:</p>
-                <p><strong>{{$maestro->grado}} {{$maestro->Nombre}} {{$maestro->Apellido}}</strong></p>
+                <p><strong>@if ($maestro->grado  == 'Doctor')
+                    Dr.
+                @elseif ($maestro->grado  == 'Doctora')
+                    Dra.
+                @elseif ($maestro->grado  == 'Maestro')
+                    Mtro.
+                @elseif ($maestro->grado  == 'Maestra')
+                    Mtra.
+                @endif {{$maestro->Nombre}} {{$maestro->Apellido}}</strong></p>
             </div>
         </div>
 

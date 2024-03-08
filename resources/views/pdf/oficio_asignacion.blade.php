@@ -98,7 +98,7 @@
 
 <body>
     <div class="header">
-        <img src="{{ public_path('imgs/logo.png') }}" alt="" style="width: 100%; height: 15%;">
+        <img src="{{ public_path('imgs/udg_logo.png') }}" alt="Logo" style="width: 65px; height: 1.4cm; margin: 3px"> <img src="{{ public_path('imgs/membrete.png')}}" style="width: 70%; height: 2.5cm; margin: 3px"  alt=""> <!-- Asegúrate de ajustar la ruta a tu logo -->
         <!-- Asegúrate de ajustar la ruta a tu logo -->
 
     </div>
@@ -116,7 +116,7 @@
         <p>Tutor(a) del Programa Nivelación a la Licenciatura en Trabajo Social</p>
         <p>Presente</p>
 
-        <p>Por este medio, se hace constar la asignación oficial de 20 alumnos que estarán bajo su tutoría
+        <p style="text-align: justify;">Por este medio, se hace constar la asignación oficial de 20 alumnos que estarán bajo su tutoría
             en la modalidad no convencional a distancia a partir del ciclo 2024 A, para ser atendidos durante
             toda la trayectoria escolar dentro del programa académico de la Nivelación a la Licenciatura en
             Trabajo Social (NiLiTS).</p>
