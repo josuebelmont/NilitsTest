@@ -163,7 +163,8 @@
 
         <p style="text-align: center;" >Durante el ciclo escolar 2023 B, periodo comprendido del 16 julio de 2023 al 15 de enero de 2024, según consta en informe presentado en tiempo y forma.
             <p style="text-align: center;" >
-        “Piensa y Trabaja” <br>Año del Legado de Fray Antonio Alcalde en Guadalajara <br>Guadalajara, Jal., a {{ $fechaActual }}</p>
+        “Piensa y Trabaja” <br>“30 años de la Autonomía de la <br>
+        Universidad de Guadalajara y de su organización en Red” <br>Guadalajara, Jal., a {{ $fechaActual }}</p>
     </div>
     <div class="signatures">
         <p>Dr. Ricardo Fletes Corona<br>Jefe del Departamento de Desarrollo Social</p>

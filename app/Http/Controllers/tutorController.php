@@ -9,23 +9,25 @@ use Illuminate\Support\Facades\DB;
 class tutorController extends Controller
 {
     public function index()
-    {
-        $user = Auth::user();
+{
+    $user = Auth::user();
 
-        // Obtener los alumnos asociados al tutor actual
-        $alumnos = DB::table('alumnos')
-                    ->join('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
-                    ->where('alumno_tutor.id_tutor', '=', $user->nombre)
-                    ->select('alumnos.*')
-                    ->get();
+    // Obtener los alumnos asociados al tutor actual y ordenarlos por 'dictamen' de manera descendente
+    $alumnos = DB::table('alumnos')
+                ->join('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
+                ->where('alumno_tutor.id_tutor', '=', $user->nombre)
+                ->select('alumnos.*')
+                ->orderBy('alumnos.dictamen', 'desc') // Ordenar por 'dictamen' de manera descendente
+                ->get();
 
-        // Mapear los resultados para incluir el nombre del estado
-        foreach ($alumnos as $alumno) {
-            $alumno->nombre_estado = $this->obtenerNombreEstado($alumno->procedencia);
-        }
-
-        return view('tutor.index')->with('alumnos', $alumnos);
+    // Mapear los resultados para incluir el nombre del estado
+    foreach ($alumnos as $alumno) {
+        $alumno->nombre_estado = $this->obtenerNombreEstado($alumno->procedencia);
     }
+
+    return view('tutor.index')->with('alumnos', $alumnos);
+}
+
 
     // Función para obtener el nombre del estado a partir del valor numérico de procedencia
     private function obtenerNombreEstado($procedencia)

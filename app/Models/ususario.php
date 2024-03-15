@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class ususario extends Authenticatable
 {
-    use Notifiable;
+
     use HasFactory;
     protected $table = 'usuario';
 }

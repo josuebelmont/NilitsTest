@@ -45,6 +45,7 @@ class alumnosContorller extends Controller
         ->leftJoin('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
         ->leftJoin('maestros', 'alumno_tutor.id_tutor', '=', 'maestros.codigo')
         ->select('alumnos.*', 'maestros.Nombre as tutor_nombre', 'maestros.Apellido as tutor_apellido')
+        ->orderBy('alumnos.codigo', 'desc')
         ->paginate(10);
         // Solo mostrar a los alumnos con tutor y aplicar paginación
         /* $alumnos = DB::table('alumnos')

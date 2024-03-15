@@ -12,7 +12,7 @@ class asesoresController extends Controller
 {
     //
     public function index(){
-        $maestros = DB::table('maestros')->where('Activo','=',1)->get();
+        $maestros = DB::table('maestros')->get();
 
         return view('asesores.index')->with('maestros',$maestros);
     }
@@ -108,7 +108,7 @@ class asesoresController extends Controller
         $maestros = DB::table('maestros')
                         ->leftJoin('alumno_tutor', 'maestros.codigo', '=', 'alumno_tutor.id_tutor')
                         ->select('maestros.*', DB::raw('COUNT(alumno_tutor.codigo) as NumeroTutorados'))
-                        ->where('maestros.Activo', '=', 1)
+
                         ->groupBy('maestros.codigo', 'maestros.id', 'maestros.Nombre', 'maestros.Apellido', 'maestros.grado', 'maestros.nombramiento', 'maestros.cargaHoraria', 'maestros.correo', 'maestros.telefonoFijo', 'maestros.telCel', 'maestros.telExt', 'maestros.observaciones', 'maestros.adscripcion', 'maestros.Activo','maestros.created_at', 'maestros.updated_at')
                         ->get();
 
