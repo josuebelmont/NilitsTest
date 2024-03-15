@@ -85,10 +85,19 @@
             text-align: right;
         }
 
-        .signature {
-            margin-top: 40px;
-            text-align: center;
-        }
+
+        .signatures {
+    text-align: center; /* Centra el contenido de '.signatures' */
+    margin-top: 40px; /* Espacio por encima de las firmas */
+}
+
+.signatures p {
+    display: inline-block; /* Mantiene los párrafos en línea */
+    width: 40%; /* Ancho de cada firma */
+    margin: 2 3.5%; /* Margen horizontal para espaciar las firmas */
+    vertical-align: top; /* Alinea los elementos al tope */
+    text-align: left; /* Alinea el texto a la izquierda dentro de cada firma */
+}
 
         @page {
             margin-top: 15px;
@@ -164,22 +173,10 @@
 
         </div>
     </div>
-    <div class="row mt-5 mb-5" style="margin-top: 10%">
-        <div class="col-md-6">
-            <p>Dr. Ricardo Fletes Corona</p>
-            <p>Jefe del Departamento de Desarrollo Social</p>
-        </div>
-        <div class="col-md-6">
-            <p>Dra. María Rosas Moreno</p>
-            <p>Coordinadora de Carrera de la NILITS</p>
-        </div>
-        <div class="clear-fix"></div>
-        <!-- Clear fix para asegurarnos de que el flujo del documento continúa normalmente después de los elementos flotantes -->
-        <div>
-            <p>Dra. Narali Esquivel Bautista</p>
-            <p>Coordinadora de Tutorías de la NILITS</p>
-
-        </div>
+    <div class="signatures">
+        <p>Dr. Ricardo Fletes Corona<br>Jefe del Departamento de Desarrollo Social</p>
+        <p>Mtra. María Rosas Moreno<br>Coordinadora de Carrera de la NiLiTS</p>
+        <p>Dra. Narali Esquivel Bautista<br>Coordinadora de Tutorías de la NiLiTS</p>
     </div>
 
     <div class="footer" style="position: fixed; bottom: 0; width: 100%; text-align: center; margin-top: 45%; font-size: 10px">
