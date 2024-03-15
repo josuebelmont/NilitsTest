@@ -22,7 +22,7 @@ class usuarioController extends Controller
             // Si no existe y las contraseñas coinciden, crear el usuario
             $usuario = new ususario();
             $usuario->nombre = $request->nombre;
-            $usuario->pass = Hash::make($request->pass); // Usar Hash::make para encriptar la contraseña
+            $usuario->pass = hash('sha1', $request->pass); // Usar Hash::make para encriptar la contraseña
             $usuario->nivel = 2;
             $usuario->save();
 
