@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <title>Constancia</title>
     <style>
+        body {
+    font-family: 'Times New Roman', serif;
+    font-size: 12px;
+    margin: 0px;
+}
+
+.header h1, .header h2 {
+    text-align: center;
+    font-weight: bold;
+}
+
         .col-md-6 {
             width: 50%; /* Ancho fijo para cada columna */
             float: left; /* Flota cada columna a la izquierda */
@@ -57,10 +68,23 @@
         .text-right {
             text-align: right;
         }
-        .signature {
-            margin-top: 40px;
-            text-align: center;
+        .signatures {
+    text-align: center; /* Centra el contenido de '.signatures' */
+    margin-top: 40px; /* Espacio por encima de las firmas */
+}
+
+.signatures p {
+    display: inline-block; /* Mantiene los párrafos en línea */
+    width: 40%; /* Ancho de cada firma */
+    margin: 2 3.5%; /* Margen horizontal para espaciar las firmas */
+    vertical-align: top; /* Alinea los elementos al tope */
+    text-align: left; /* Alinea el texto a la izquierda dentro de cada firma */
+}
+@page {
+            margin-top: 15px;
+            margin-bottom: 0px;
         }
+
         .page-break {
             page-break-after: avoid;
         }
@@ -68,16 +92,17 @@
 </head>
 <body>
     <div class="header" >
-        <img src="{{ public_path('imgs/udg_logo.png') }}" alt="Logo" style="width: 65px; height: 1.4cm; margin: 3px"> <img src="{{ public_path('imgs/membrete.png')}}" style="width: 70%; height: 2.5cm; margin: 3px"  alt=""> <!-- Asegúrate de ajustar la ruta a tu logo -->
+        <img src="{{ public_path('imgs/logo.png') }}" alt="Logo" style="width: 99%; height: auto; margin: 10px " >
+
 
     </div>
 
 
 
     <div class="content "  style="margin-top: 5%">
-        <div class="d-flex align-items-center justify-content-center text-center" style="height: 100vh; text-align: center;">
+        <div class="d-flex align-items-center justify-content-center text-center" style="height: 50vh; text-align: center;">
             <div>
-                <h2 class="title">SE OTORGA LA PRESENTE</h2>
+                <p style="font-size: 17px ">SE OTORGA LA PRESENTE</p>
                 <h3>CONSTANCIA</h3>
                 <p>A:</p>
                 <p><strong>@if ($maestro->grado  == 'Doctor')
@@ -93,7 +118,7 @@
         </div>
 
 
-        <p style="text-align: center">Por haber impartido tutoría académica y permanente de 18 alumnos del Programa de Noviciado en la Licenciatura en Trabajo Social:</p>
+        <p style="text-align: justify;">Por haber impartido tutoría académica y permanente de 18 alumnos del Programa de Noviciado en la Licenciatura en Trabajo Social:</p>
 
         <div style=" width: 100%;">
             {{-- Primera mitad de tutorados --}}
@@ -121,36 +146,20 @@
 
 
 
-        <div class="signature">
-            <p style="clear: both; text-align: left;" >Durante el ciclo escolar 2023 B, periodo comprendido del 16 julio de 2023 al 15 de enero de 2024, según consta en informe presentado en tiempo y forma.</p>
-            <p>Atentamente</p>
-            <p>"Piensa y Trabaja"</p>
-            <p>“30 años de la Autonom&iacute;a de la <br>
-                Universidad de Guadalajara y de su organizaci&oacute;n en Red”</p>
 
-    <p>Guadalajara, Jal., a {{ $fechaActual }}</p>
+            <p style="text-align: center;" >Durante el ciclo escolar 2023 B, periodo comprendido del 16 julio de 2023 al 15 de enero de 2024, según consta en informe presentado en tiempo y forma.
+                <p style="text-align: center;" >
+            “Piensa y Trabaja” <br>Año del Legado de Fray Antonio Alcalde en Guadalajara <br>Guadalajara, Jal., a {{ $fechaActual }}</p>
 
 
 
-        </div>
     </div>
-    <div class="row mt-5 mb-5">
-        <div class="col-md-6">
-            <p>Dr. Ricardo Fletes Corona</p>
-            <p>Jefe del Departamento de Desarrollo Social</p>
-        </div>
-        <div class="col-md-6">
-            <p>Dra. María Rosas Moreno</p>
-            <p>Coordinadora de Carrera de la NILITS</p>
-        </div>
-
-        <div class="clear-fix"></div> <!-- Clear fix para asegurarnos de que el flujo del documento continúa normalmente después de los elementos flotantes -->
-        <div class="text-justify" style="width: 100%; text-align: center">
-            <p>Dra. Narali Esquivel Bautista</p>
-            <p>Coordinadora de Tutorías de la NILITS</p>
-
-        </div>
+    <div class="signatures">
+        <p>Dr. Ricardo Fletes Corona<br>Jefe del Departamento de Desarrollo Social</p>
+        <p>Mtra. María Rosas Moreno<br>Coordinadora de Carrera de la NiLiTS</p>
+        <p>Dra. Narali Esquivel Bautista<br>Coordinadora de Tutorías de la NiLiTS</p>
     </div>
+
 
     <div class="footer" style="position: fixed; bottom: 0; width: 100%; text-align: center; margin-top: 45%; font-size: 10px">
 

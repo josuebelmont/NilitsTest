@@ -39,6 +39,8 @@ Route::get('alumnado',[alumnosContorller::class, 'alumnado_restringido'])->name(
 
 Route::get('alumnos',[alumnosContorller::class,'index'])->name('alumnos');
 
+Route::delete('/elminarAsignado/{codigo}',[asesoresController::class,'desasignar'])->name('elminarAsignado');
+
 
 Route::get('alumnos/detalles/all/{codigo}',[alumnosContorller::class,'detalles'])->name('alumnos/detalles/all');
 
@@ -46,6 +48,7 @@ Route::post('/alumnos/crear', [alumnosContorller::class, 'store'])->name('/alumn
 
 Route::post('registro', [usuarioController::class, 'registro'])->name('registro');
 
+Route::post('/aplicaras', [alumnosContorller::class, 'asignacion'])->name('aplicaras');
 
 //ruta para mostrar alumnos sin tutor
 Route::get('/alumnos/sintutor',[alumnosContorller::class,'alumno_sin_tutor'])->name('/alumnos/sintutor');

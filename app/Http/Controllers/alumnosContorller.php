@@ -321,4 +321,25 @@ class alumnosContorller extends Controller
         // Devolver la vista con los resultados de la búsqueda
         return view('almunado.index', ['alumnos' => $alumnos, 'tutores' => $tutores, 'totalRegistros' => $totalRegistros, 'totalEgresados' => $totalEgresados, 'totalActivos' => $totalActivos, 'totalBajas' => $totalBajas]);
     }
+
+
+    public function asignacion(Request $request)
+{
+    $validated = $request->validate([
+        'maestro' => 'required',
+        'alumno' => 'required|array', // Asumiendo que puedes tener múltiples alumnos seleccionados
+    ]);
+
+    foreach ($request->alumno as $codigoAlumno) {
+        alumno_tutorModel::create([
+            'id_tutor' => $request->maestro,
+            'codigo' => $codigoAlumno,
+
+        ]);
+    }
+
+    return redirect()->route('gestionar-tutores');
+}
+
+
 }

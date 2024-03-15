@@ -90,6 +90,10 @@
             text-align: center;
         }
 
+        @page {
+            margin-top: 15px;
+            margin-bottom: 0px;
+        }
         .page-break {
             page-break-after: avoid;
         }
@@ -98,12 +102,12 @@
 
 <body>
     <div class="header">
-        <img src="{{ public_path('imgs/udg_logo.png') }}" alt="Logo" style="width: 65px; height: 1.4cm; margin: 3px"> <img src="{{ public_path('imgs/membrete.png')}}" style="width: 70%; height: 2.5cm; margin: 3px"  alt=""> <!-- Asegúrate de ajustar la ruta a tu logo -->
-        <!-- Asegúrate de ajustar la ruta a tu logo -->
+        <img src="{{ public_path('imgs/logo.png') }}" alt="Logo" style="width: 99%; height: auto; margin: 10px " >
+
 
     </div>
 
-    <div class="container">
+    <div class="container" style="margin-top: 5%">
         <p><strong>@if ($maestro->grado  == 'Doctor')
             Dr.
         @elseif ($maestro->grado  == 'Doctora')

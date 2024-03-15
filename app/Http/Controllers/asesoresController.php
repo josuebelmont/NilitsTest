@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\alumno_tutorModel;
 use App\Models\alumnos_model;
 use App\Models\maestrosModel;
 use Illuminate\Http\Request;
@@ -111,7 +112,15 @@ class asesoresController extends Controller
                         ->groupBy('maestros.codigo', 'maestros.id', 'maestros.Nombre', 'maestros.Apellido', 'maestros.grado', 'maestros.nombramiento', 'maestros.cargaHoraria', 'maestros.correo', 'maestros.telefonoFijo', 'maestros.telCel', 'maestros.telExt', 'maestros.observaciones', 'maestros.adscripcion', 'maestros.Activo','maestros.created_at', 'maestros.updated_at')
                         ->get();
 
-        return view('tutores.index', compact('maestros'));
+        $alumnos = DB::table('alumnos')
+                        ->leftJoin('alumno_tutor', 'alumnos.codigo', '=', 'alumno_tutor.codigo')
+                        ->leftJoin('maestros', 'alumno_tutor.id_tutor', '=', 'maestros.codigo')
+                        ->whereNull('maestros.codigo')
+                        ->where('alumnos.estatus', '=', 1) // Filtrar por estatus igual a 1
+                        ->select('alumnos.*')
+                        ->paginate(10);
+
+        return view('tutores.index', compact('maestros','alumnos'));
     }
 
     public function getTutorados($maestroId)
@@ -123,6 +132,18 @@ class asesoresController extends Controller
                     ->get();
 
     return response()->json($tutorados);
+}
+
+
+public function desasignar($codigo){
+    $record = alumno_tutorModel::where('codigo', '=', $codigo)->first();
+
+    $record->delete();
+
+
+    return $record;
+    return redirect()->route('asesores');
+
 }
 
 
