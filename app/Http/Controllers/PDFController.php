@@ -33,8 +33,34 @@ class PDFController extends Controller
 
     $half = ceil($tutorados->count() / 2);
 
+    Carbon::setLocale(LC_ALL,'es_MX.UTF-8'); // Establece el idioma de Carbon
+
+
+     // Traducción de los nombres de los meses al español
+     $meses = [
+         'January' => 'enero',
+         'February' => 'febrero',
+         'March' => 'marzo',
+         'April' => 'abril',
+         'May' => 'mayo',
+         'June' => 'junio',
+         'July' => 'julio',
+         'August' => 'agosto',
+         'September' => 'septiembre',
+         'October' => 'octubre',
+         'November' => 'noviembre',
+         'December' => 'diciembre',
+     ];
+
+     // Formatea la fecha manualmente con los nombres de los meses en español
+     $fechaActual = Carbon::now()->format('d \d\e F \d\e Y');
+
+     foreach ($meses as $mesIngles => $mesEspanol) {
+         $fechaActual = str_replace($mesIngles, $mesEspanol, $fechaActual);
+     }
+
     $pdf = PDF::loadView('pdf.oficio_asignacion',['maestro' => $maestro,
-    'tutorados' => $tutorados, 'half'=>$half]);
+    'tutorados' => $tutorados, 'half'=>$half, 'fechaActual'=>$fechaActual]);
 
     return $pdf->download('oficio_asignacion.pdf');
 }
